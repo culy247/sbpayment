@@ -43,8 +43,8 @@
                     var timeRequest = getYYYYMMDDHHMMSS();
                     var order = new Order();
                     order.pay_method            = "softbank2,docomo";
-                    order.merchant_id           = "76116";
-                    //order.merchant_id           = "30132";
+                    //order.merchant_id           = "76116";
+                    order.merchant_id           = "30132";
                     order.service_id            = "001";
                     order.cust_code             = "SPSSFA0000028840";
                     order.sps_cust_no           = "";
@@ -60,7 +60,7 @@
                     order.service_type          = "0";
                     order.div_settele           = "";
                     order.last_charge_month     = "";
-                    order.camp_type             = "";
+                    //order.camp_type             = "";
                     order.tracking_id           = "";
                     order.terminal_type         = "0";
                     order.success_url           = "http://stbfep.sps-system.com/MerchantPaySuccess.jsp";
@@ -73,10 +73,8 @@
                     //order.free_csv_input        = "";
                     order.request_date          = timeRequest;
                     order.limit_second          = "";
-                    order.hashkey               = "ab3150b95269b5f893d8a08b33cca57daaf428cc";
-                    //order.hashkey               = "c48e0e2c7d04f0954594f14c7801bd430ca6263e";
-
-                    //order.free_csv = base64.encode(order.free_csv_input, 1);
+                    //order.hashkey               = "ab3150b95269b5f893d8a08b33cca57daaf428cc";
+                    order.hashkey               = "c48e0e2c7d04f0954594f14c7801bd430ca6263e";
 
                     order.sps_hashcode = Sha1.hash(order.toString());
 
@@ -113,7 +111,7 @@
                             this.service_type +
                             this.div_settele +
                             this.last_charge_month +
-                            this.camp_type +
+                            //this.camp_type +
                             this.tracking_id +
                             this.terminal_type +
                             this.success_url +
@@ -158,7 +156,7 @@
                     form.append($("<input>", { type: "hidden", name: "service_type", value: order.service_type }));
                     form.append($("<input>", { type: "hidden", name: "div_settele", value: order.div_settele }));
                     form.append($("<input>", { type: "hidden", name: "last_charge_month", value: order.last_charge_month }));
-                    form.append($("<input>", { type: "hidden", name: "camp_type", value: order.camp_type }));
+                    //form.append($("<input>", { type: "hidden", name: "camp_type", value: order.camp_type }));
                     form.append($("<input>", { type: "hidden", name: "tracking_id", value: order.tracking_id }));
                     form.append($("<input>", { type: "hidden", name: "terminal_type", value: order.terminal_type }));
                     form.append($("<input>", { type: "hidden", name: "success_url", value: order.success_url }));
