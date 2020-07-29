@@ -98,8 +98,8 @@
                             this.merchant_id +
                             this.service_id +
                             this.cust_code +
-                            this.sps_cust_no +
-                            this.sps_payment_no +
+                            //this.sps_cust_no +
+                            //this.sps_payment_no +
                             this.order_id +
                             this.item_id +
                             //this.pay_item_id +
@@ -143,8 +143,8 @@
                     form.append($("<input>", { type: "hidden", name: "merchant_id", value: order.merchant_id }));
                     form.append($("<input>", { type: "hidden", name: "service_id", value: order.service_id }));
                     form.append($("<input>", { type: "hidden", name: "cust_code", value: order.cust_code }));
-                    form.append($("<input>", { type: "hidden", name: "sps_cust_no", value: order.sps_cust_no }));
-                    form.append($("<input>", { type: "hidden", name: "sps_payment_no", value: order.sps_payment_no }));
+                    //form.append($("<input>", { type: "hidden", name: "sps_cust_no", value: order.sps_cust_no }));
+                    //form.append($("<input>", { type: "hidden", name: "sps_payment_no", value: order.sps_payment_no }));
                     form.append($("<input>", { type: "hidden", name: "order_id", value: order.order_id }));
                     form.append($("<input>", { type: "hidden", name: "item_id", value: order.item_id }));
                     //form.append($("<input>", { type: "hidden", name: "pay_item_id", value: order.pay_item_id }));
