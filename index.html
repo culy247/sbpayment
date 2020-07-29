@@ -76,19 +76,7 @@
                     //order.hashkey               = "ab3150b95269b5f893d8a08b33cca57daaf428cc";
                     order.hashkey               = "c48e0e2c7d04f0954594f14c7801bd430ca6263e";
 
-                    var orderDetail = new OrderDetail();
-                    orderDetail.dtl_rowno       = "1";
-                    orderDetail.dtl_item_id     = "U_FRET";
-                    orderDetail.dtl_item_name   = "U‐FRET";
-                    orderDetail.dtl_item_count  = "1";
-                    orderDetail.dtl_tax         = "1";
-                    orderDetail.dtl_amount      = "1";
-                    orderDetail.dtl_free1       = "";
-                    orderDetail.dtl_free2       = "";
-                    orderDetail.dtl_free3       = "";
-                    order.orderDetail.push(orderDetail);
-
-                    order.free_csv = base64.encode(order.free_csv_input, 1);
+                               order.free_csv = base64.encode(order.free_csv_input, 1);
 
                     order.sps_hashcode = Sha1.hash(order.toString());
 
@@ -103,13 +91,10 @@
                 }
 
                 function Order() {
-                    this.orderDetail = new Array();
+                    
                     this.toString = function () {
                         var resultOrderDetail = "";
-                        for (i = 0; i < this.orderDetail.length; i++) {
-                            resultOrderDetail = resultOrderDetail + this.orderDetail[i].toString();
-                        }
-
+                        
                         var result =
                             this.pay_method +
                             this.merchant_id +
@@ -139,7 +124,6 @@
                             this.free2 +
                             this.free3 +
                             this.free_csv +
-                            //resultOrderDetail +
                             this.request_date +
                             this.limit_second +
                             this.hashkey;
@@ -150,18 +134,6 @@
                 function getYYYYMMDDHHMMSS() {
                     return moment().tz("Asia/Tokyo").format("YYYYMMDDHHmmss");
                 }
-                /*
-                function getYYYYMMDDHHMMSS(){
-                    var now = new Date();
-                    return now.getFullYear() + zeroPadding(now.getMonth() + 1) + zeroPadding(now.getDate()) +
-                        zeroPadding(now.getHours()) + zeroPadding(now.getMinutes()) + zeroPadding(now.getSeconds());
-                }
-
-                function zeroPadding(num) {
-                    if (num < 10) { num = "0" + num; }
-                    return num + "";
-                }
-                */
 
                 function formBuild(order) {
                     var connectUrl = "https://stbfep.sps-system.com/f01/FepBuyInfoReceive.do";
@@ -201,18 +173,6 @@
                     form.append($("<input>", { type: "hidden", name: "limit_second", value: order.limit_second }));
                     form.append($("<input>", { type: "hidden", name: "hashkey", value: order.hashkey }));
                     form.append($("<input>", { type: "hidden", name: "sps_hashcode", value: order.sps_hashcode }));
-
-//                     for (i = 0; i < order.orderDetail.length; i++) {
-//                         form.append($("<input>", { type: "hidden", name: "dtl_rowno", value: order.orderDetail[i].dtl_rowno }));
-//                         form.append($("<input>", { type: "hidden", name: "dtl_item_id", value: order.orderDetail[i].dtl_item_id }));
-//                         form.append($("<input>", { type: "hidden", name: "dtl_item_name", value: order.orderDetail[i].dtl_item_name }));
-//                         form.append($("<input>", { type: "hidden", name: "dtl_item_count", value: order.orderDetail[i].dtl_item_count }));
-//                         form.append($("<input>", { type: "hidden", name: "dtl_tax", value: order.orderDetail[i].dtl_tax }));
-//                         form.append($("<input>", { type: "hidden", name: "dtl_amount", value: order.orderDetail[i].dtl_amount }));
-//                         form.append($("<input>", { type: "hidden", name: "dtl_free1", value: order.orderDetail[i].dtl_free1 }));
-//                         form.append($("<input>", { type: "hidden", name: "dtl_free2", value: order.orderDetail[i].dtl_free2 }));
-//                         form.append($("<input>", { type: "hidden", name: "dtl_free3", value: order.orderDetail[i].dtl_free3 }));
-//                     }
 
                     form.submit();
                 }
