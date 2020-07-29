@@ -43,8 +43,8 @@
                     var timeRequest = getYYYYMMDDHHMMSS();
                     var order = new Order();
                     order.pay_method            = "softbank2,docomo";
-                    //order.merchant_id           = "76116";
-                    order.merchant_id           = "30132";
+                    order.merchant_id           = "76116";
+                    //order.merchant_id           = "30132";
                     order.service_id            = "001";
                     order.cust_code             = "SPSSFA0000028840";
                     order.sps_cust_no           = "";
@@ -73,8 +73,8 @@
                     //order.free_csv_input        = "";
                     order.request_date          = timeRequest;
                     order.limit_second          = "";
-                    //order.hashkey               = "ab3150b95269b5f893d8a08b33cca57daaf428cc";
-                    order.hashkey               = "c48e0e2c7d04f0954594f14c7801bd430ca6263e";
+                    order.hashkey               = "ab3150b95269b5f893d8a08b33cca57daaf428cc";
+                    //order.hashkey               = "c48e0e2c7d04f0954594f14c7801bd430ca6263e";
 
                     order.sps_hashcode = Sha1.hash(order.toString());
 
