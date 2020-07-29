@@ -202,17 +202,17 @@
                     form.append($("<input>", { type: "hidden", name: "hashkey", value: order.hashkey }));
                     form.append($("<input>", { type: "hidden", name: "sps_hashcode", value: order.sps_hashcode }));
 
-                    for (i = 0; i < order.orderDetail.length; i++) {
-                        form.append($("<input>", { type: "hidden", name: "dtl_rowno", value: order.orderDetail[i].dtl_rowno }));
-                        form.append($("<input>", { type: "hidden", name: "dtl_item_id", value: order.orderDetail[i].dtl_item_id }));
-                        form.append($("<input>", { type: "hidden", name: "dtl_item_name", value: order.orderDetail[i].dtl_item_name }));
-                        form.append($("<input>", { type: "hidden", name: "dtl_item_count", value: order.orderDetail[i].dtl_item_count }));
-                        form.append($("<input>", { type: "hidden", name: "dtl_tax", value: order.orderDetail[i].dtl_tax }));
-                        form.append($("<input>", { type: "hidden", name: "dtl_amount", value: order.orderDetail[i].dtl_amount }));
-                        form.append($("<input>", { type: "hidden", name: "dtl_free1", value: order.orderDetail[i].dtl_free1 }));
-                        form.append($("<input>", { type: "hidden", name: "dtl_free2", value: order.orderDetail[i].dtl_free2 }));
-                        form.append($("<input>", { type: "hidden", name: "dtl_free3", value: order.orderDetail[i].dtl_free3 }));
-                    }
+//                     for (i = 0; i < order.orderDetail.length; i++) {
+//                         form.append($("<input>", { type: "hidden", name: "dtl_rowno", value: order.orderDetail[i].dtl_rowno }));
+//                         form.append($("<input>", { type: "hidden", name: "dtl_item_id", value: order.orderDetail[i].dtl_item_id }));
+//                         form.append($("<input>", { type: "hidden", name: "dtl_item_name", value: order.orderDetail[i].dtl_item_name }));
+//                         form.append($("<input>", { type: "hidden", name: "dtl_item_count", value: order.orderDetail[i].dtl_item_count }));
+//                         form.append($("<input>", { type: "hidden", name: "dtl_tax", value: order.orderDetail[i].dtl_tax }));
+//                         form.append($("<input>", { type: "hidden", name: "dtl_amount", value: order.orderDetail[i].dtl_amount }));
+//                         form.append($("<input>", { type: "hidden", name: "dtl_free1", value: order.orderDetail[i].dtl_free1 }));
+//                         form.append($("<input>", { type: "hidden", name: "dtl_free2", value: order.orderDetail[i].dtl_free2 }));
+//                         form.append($("<input>", { type: "hidden", name: "dtl_free3", value: order.orderDetail[i].dtl_free3 }));
+//                     }
 
                     form.submit();
                 }
