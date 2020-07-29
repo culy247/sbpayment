@@ -70,13 +70,13 @@
                     order.free1                 = "";
                     order.free2                 = "";
                     order.free3                 = "";
-                    order.free_csv_input        = "";
+                    //order.free_csv_input        = "";
                     order.request_date          = timeRequest;
                     order.limit_second          = "";
                     //order.hashkey               = "ab3150b95269b5f893d8a08b33cca57daaf428cc";
                     order.hashkey               = "c48e0e2c7d04f0954594f14c7801bd430ca6263e";
 
-                               order.free_csv = base64.encode(order.free_csv_input, 1);
+                    //order.free_csv = base64.encode(order.free_csv_input, 1);
 
                     order.sps_hashcode = Sha1.hash(order.toString());
 
@@ -123,7 +123,7 @@
                             this.free1 +
                             this.free2 +
                             this.free3 +
-                            this.free_csv +
+                            //this.free_csv +
                             this.request_date +
                             this.limit_second +
                             this.hashkey;
@@ -168,7 +168,7 @@
                     form.append($("<input>", { type: "hidden", name: "free1", value: order.free1 }));
                     form.append($("<input>", { type: "hidden", name: "free2", value: order.free2 }));
                     form.append($("<input>", { type: "hidden", name: "free3", value: order.free3 }));
-                    form.append($("<input>", { type: "hidden", name: "free_csv", value: order.free_csv }));
+                    //form.append($("<input>", { type: "hidden", name: "free_csv", value: order.free_csv }));
                     form.append($("<input>", { type: "hidden", name: "request_date", value: order.request_date }));
                     form.append($("<input>", { type: "hidden", name: "limit_second", value: order.limit_second }));
                     form.append($("<input>", { type: "hidden", name: "hashkey", value: order.hashkey }));
