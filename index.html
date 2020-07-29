@@ -51,7 +51,7 @@
                     order.sps_payment_no        = "";
                     order.order_id              = hex_md5(timeRequest);
                     order.item_id               = "itm003";
-                    order.pay_item_id           = "";
+                    //order.pay_item_id           = "";
                     order.item_name             = "パソコン";
                     //order.tax                   = "";
                     order.amount                = "1000";
@@ -102,7 +102,7 @@
                             this.sps_payment_no +
                             this.order_id +
                             this.item_id +
-                            this.pay_item_id +
+                            //this.pay_item_id +
                             this.item_name +
                             //this.tax +
                             this.amount +
@@ -147,7 +147,7 @@
                     form.append($("<input>", { type: "hidden", name: "sps_payment_no", value: order.sps_payment_no }));
                     form.append($("<input>", { type: "hidden", name: "order_id", value: order.order_id }));
                     form.append($("<input>", { type: "hidden", name: "item_id", value: order.item_id }));
-                    form.append($("<input>", { type: "hidden", name: "pay_item_id", value: order.pay_item_id }));
+                    //form.append($("<input>", { type: "hidden", name: "pay_item_id", value: order.pay_item_id }));
                     form.append($("<input>", { type: "hidden", name: "item_name", value: order.item_name }));
                     //form.append($("<input>", { type: "hidden", name: "tax", value: order.tax }));
                     form.append($("<input>", { type: "hidden", name: "amount", value: order.amount }));
