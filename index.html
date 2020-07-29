@@ -85,9 +85,9 @@
                 }
 
                 function formBuild(order) {
-                    var connectUrl = "https://stbfep.sps-system.com/f04/FepPayInfoReceive.do";
-                    //var form = $("<form></form>", { action: connectUrl, target: "receiver", method: "POST" , "accept-charset": "Shift-JIS"}).hide();
-                    var form = $("<form></form>", { action: connectUrl, target: "receiver", method: "POST"}).hide();
+                    var connectUrl = "https://stbfep.sps-system.com/f01/FepPayInfoReceive.do";
+                    var form = $("<form></form>", { action: connectUrl, target: "receiver", method: "POST" , "accept-charset": "Shift-JIS"}).hide();
+                    //var form = $("<form></form>", { action: connectUrl, target: "receiver", method: "POST"}).hide();
 
                     var body = $("body");
                     body.append(form);
