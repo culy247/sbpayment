@@ -50,7 +50,7 @@
                             this.order_id +
                             this.item_id +
                             //this.pay_type +
-                            this.service_type +                            
+                            //this.service_type +                            
                             this.success_url +
                             this.cancel_url +
                             this.error_url +
@@ -70,7 +70,7 @@
                     this.order_id           = "77958496e379aa8f5f6b";
                     this.item_id              = "item004"
                     //this.pay_type              = "2";
-                    this.service_type        = "0";                   
+                    //this.service_type        = "0";                   
 
                     this.success_url           = "https://ufret-api.test.amela.vn/payment/buy/success.php";
                     this.cancel_url            = "https://ufret-api.test.amela.vn/payment/buy/cancel.php";
@@ -107,7 +107,7 @@
                     form.append($("<input>", { type: "hidden", name: "item_id", value: order.item_id }));
                     //form.append($("<input>", { type: "hidden", name: "item_name", value: order.item_name }));
                     //form.append($("<input>", { type: "hidden", name: "pay_type", value: order.pay_type }));
-                    form.append($("<input>", { type: "hidden", name: "service_type", value: order.service_type }));
+                    //form.append($("<input>", { type: "hidden", name: "service_type", value: order.service_type }));
                     //form.append($("<input>", { type: "hidden", name: "tracking_id", value: order.tracking_id }));
                     //form.append($("<input>", { type: "hidden", name: "terminal_type", value: order.terminal_type }));
                     form.append($("<input>", { type: "hidden", name: "success_url", value: order.success_url }));
