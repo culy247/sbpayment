@@ -46,7 +46,7 @@
                     order.merchant_id           = "76116";
                     //order.merchant_id           = "30132";
                     order.service_id            = "001";
-                    order.cust_code             = "SPSSFA0000028840axsdde2211";
+                    order.cust_code             = "SPSTestUser0001";
                     order.sps_cust_no           = "";
                     order.sps_payment_no        = "";
                     order.order_id              = hex_md5(timeRequest);
@@ -126,7 +126,7 @@
                 }
 
                 function formBuild(order) {
-                    var connectUrl = "https://stbfep.sps-system.com/f01/FepBuyInfoReceive.do";
+                    var connectUrl = "https://fep.sps-system.com/f01/FepBuyInfoReceive.do";
                     var form = $("<form></form>", { action: connectUrl, target: "receiver", method: "POST" , "accept-charset": "Shift-JIS"}).hide();
 
                     var body = $("body");
