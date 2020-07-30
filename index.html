@@ -81,18 +81,10 @@
                     formBuild(order);
                 }
 
-                function OrderDetail() {
-                    this.toString = function () {
-                        var result = this.dtl_rowno + this.dtl_item_id + this.dtl_item_name + this.dtl_item_count + this.dtl_tax + this.dtl_amount + this.dtl_free1 + this.dtl_free2 + this.dtl_free3;
-                        return result;
-                    };
-                }
-
                 function Order() {
                     
                     this.toString = function () {
-                        var resultOrderDetail = "";
-                        
+                       
                         var result =
                             this.pay_method +
                             this.merchant_id +
