@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">
     <head>
@@ -30,64 +31,103 @@
         </div>
         <script src="/js/jquery.min.js"></script>
         <script src="/js/utf8.js"></script>
+        <script src="/js/base64.js"></script>
         <script src="/js/sha1.js"></script>
         <script src="/js/md5.js"></script>
         <script src="/js/moment.min.js"></script>
         <script src="/js/moment-timezone-with-data.min.js"></script>
+        <script src="/js/encoding.min.js"></script>
         <script>
             (function () {
-                function getYYYYMMDDHHMMSS() {
-                    return moment().tz("Asia/Tokyo").format("YYYYMMDDHHmmss");
+                function formSubmit() {
+                    var timeRequest = getYYYYMMDDHHMMSS();
+                    var order = new Order();
+                    order.pay_method            = "softbank2,docomo";
+                    order.merchant_id           = "76116";
+                    //order.merchant_id           = "30132";
+                    order.service_id            = "001";
+                    order.cust_code             = "testuser12345";
+                    order.sps_cust_no           = "";
+                    order.sps_payment_no        = "";
+                    order.order_id              = hex_md5(timeRequest);
+                    order.item_id               = "itm003";
+                    order.pay_item_id           = "";
+                    order.item_name             = "パソコン";
+                    order.tax                   = "100";
+                    order.amount                = "1000";
+                    order.pay_type              = "2";
+                    order.auto_charge_type      = "0";
+                    order.service_type          = "0";
+                    order.div_settele           = "0";
+                    //order.last_charge_month     = "";
+                    //order.camp_type             = "";
+                    order.tracking_id           = "";
+                    order.terminal_type         = "0";
+                    order.success_url           = "http://stbfep.sps-system.com/MerchantPaySuccess.jsp";
+                    order.cancel_url            = "http://stbfep.sps-system.com/MerchantPayCancel.jsp";
+                    order.error_url             = "http://stbfep.sps-system.com/MerchantPayError.jsp";
+                    order.pagecon_url           = "http://stbfep.sps-system.com/MerchantPayResultRecieveSuccess.jsp";
+                    order.free1                 = "";
+                    order.free2                 = "";
+                    order.free3                 = "";
+                    //order.free_csv_input        = "";
+                    order.request_date          = timeRequest;
+                    order.limit_second          = "600";
+                    order.hashkey               = "ab3150b95269b5f893d8a08b33cca57daaf428cc";
+                    //order.hashkey               = "c48e0e2c7d04f0954594f14c7801bd430ca6263e";
+
+                    order.sps_hashcode = Sha1.hash(order.toString());
+
+                    formBuild(order);
                 }
 
                 function Order() {
+                    
                     this.toString = function () {
+                       
                         var result =
                             this.pay_method +
                             this.merchant_id +
                             this.service_id +
                             this.cust_code +
-                            //this.service_type +
+                            this.sps_cust_no +
+                            this.sps_payment_no +
+                            this.order_id +
+                            this.item_id +
+                            this.pay_item_id +
+                            this.item_name +
+                            this.tax +
+                            this.amount +
+                            this.pay_type +
+                            this.auto_charge_type +
+                            this.service_type +
+                            this.div_settele +
+                            //this.last_charge_month +
+                            //this.camp_type +
+                            this.tracking_id +
+                            this.terminal_type +
                             this.success_url +
                             this.cancel_url +
                             this.error_url +
                             this.pagecon_url +
+                            this.free1 +
+                            this.free2 +
+                            this.free3 +
+                            //this.free_csv +
                             this.request_date +
                             this.limit_second +
                             this.hashkey;
                         return result;
                     };
-
-                    var timeRequest = getYYYYMMDDHHMMSS();
-                    this.pay_method            = "";
-                    //this.merchant_id           = "76116";
-                    this.merchant_id           = "30132";
-                    this.service_id            = "001";
-                    this.cust_code             = "SPSSFA0000028840";
-                    //this.service_type          = "1";
-
-                    this.success_url           = "https://ufret-api.test.amela.vn/payment/buy/success.php";
-                    this.cancel_url            = "https://ufret-api.test.amela.vn/payment/buy/cancel.php";
-                    this.error_url             = "https://ufret-api.test.amela.vn/payment/buy/error.php";
-                    this.pagecon_url           = "https://ufret-api.test.amela.vn/payment/buy/pagecon.php";
-                    
-                    this.request_date          = timeRequest;
-                    this.limit_second          = "";
-                    //this.hashkey               = "ab3150b95269b5f893d8a08b33cca57daaf428cc";
-                    this.hashkey               = "c48e0e2c7d04f0954594f14c7801bd430ca6263e";
                 }
 
-
-                function formSubmit() {
-                    var order = new Order();
-                    order.sps_hashcode = Sha1.hash(order.toString());
-                    formBuild(order);
+                function getYYYYMMDDHHMMSS() {
+                    return moment().tz("Asia/Tokyo").format("YYYYMMDDHHmmss");
                 }
 
                 function formBuild(order) {
-                    var connectUrl = "https://stbfep.sps-system.com/f04/FepPayInfoReceive.do";
-                    //var form = $("<form></form>", { action: connectUrl, target: "receiver", method: "POST" , "accept-charset": "Shift-JIS"}).hide();
-                    var form = $("<form></form>", { action: connectUrl, target: "receiver", method: "POST"}).hide();
+                    var connectUrl = "https://stbfep.sps-system.com/f01/FepBuyInfoReceive.do";
+                    var form = $("<form></form>", { action: connectUrl, target: "receiver", method: "POST" , "accept-charset": "Shift-JIS"}).hide();
 
                     var body = $("body");
                     body.append(form);
@@ -95,23 +135,33 @@
                     form.append($("<input>", { type: "hidden", name: "merchant_id", value: order.merchant_id }));
                     form.append($("<input>", { type: "hidden", name: "service_id", value: order.service_id }));
                     form.append($("<input>", { type: "hidden", name: "cust_code", value: order.cust_code }));
-                    //form.append($("<input>", { type: "hidden", name: "sps_cust_no", value: order.sps_cust_no }));
-                    //form.append($("<input>", { type: "hidden", name: "sps_payment_no", value: order.sps_payment_no }));
-                    //form.append($("<input>", { type: "hidden", name: "order_id", value: order.order_id }));
-                    //form.append($("<input>", { type: "hidden", name: "item_id", value: order.item_id }));
-                    //form.append($("<input>", { type: "hidden", name: "item_name", value: order.item_name }));
-                    //form.append($("<input>", { type: "hidden", name: "service_type", value: order.service_type }));
-                    //form.append($("<input>", { type: "hidden", name: "tracking_id", value: order.tracking_id }));
-                    //form.append($("<input>", { type: "hidden", name: "terminal_type", value: order.terminal_type }));
+                    form.append($("<input>", { type: "hidden", name: "sps_cust_no", value: order.sps_cust_no }));
+                    form.append($("<input>", { type: "hidden", name: "sps_payment_no", value: order.sps_payment_no }));
+                    form.append($("<input>", { type: "hidden", name: "order_id", value: order.order_id }));
+                    form.append($("<input>", { type: "hidden", name: "item_id", value: order.item_id }));
+                    form.append($("<input>", { type: "hidden", name: "pay_item_id", value: order.pay_item_id }));
+                    form.append($("<input>", { type: "hidden", name: "item_name", value: order.item_name }));
+                    form.append($("<input>", { type: "hidden", name: "tax", value: order.tax }));
+                    form.append($("<input>", { type: "hidden", name: "amount", value: order.amount }));
+                    form.append($("<input>", { type: "hidden", name: "pay_type", value: order.pay_type }));
+                    form.append($("<input>", { type: "hidden", name: "auto_charge_type", value: order.auto_charge_type }));
+                    form.append($("<input>", { type: "hidden", name: "service_type", value: order.service_type }));
+                    form.append($("<input>", { type: "hidden", name: "div_settele", value: order.div_settele }));
+                    //form.append($("<input>", { type: "hidden", name: "last_charge_month", value: order.last_charge_month }));
+                    //form.append($("<input>", { type: "hidden", name: "camp_type", value: order.camp_type }));
+                    form.append($("<input>", { type: "hidden", name: "tracking_id", value: order.tracking_id }));
+                    form.append($("<input>", { type: "hidden", name: "terminal_type", value: order.terminal_type }));
                     form.append($("<input>", { type: "hidden", name: "success_url", value: order.success_url }));
                     form.append($("<input>", { type: "hidden", name: "cancel_url", value: order.cancel_url }));
                     form.append($("<input>", { type: "hidden", name: "error_url", value: order.error_url }));
                     form.append($("<input>", { type: "hidden", name: "pagecon_url", value: order.pagecon_url }));
-                    //form.append($("<input>", { type: "hidden", name: "free1", value: order.free1 }));
-                    //form.append($("<input>", { type: "hidden", name: "free2", value: order.free2 }));
-                    //form.append($("<input>", { type: "hidden", name: "free3", value: order.free3 }));
+                    form.append($("<input>", { type: "hidden", name: "free1", value: order.free1 }));
+                    form.append($("<input>", { type: "hidden", name: "free2", value: order.free2 }));
+                    form.append($("<input>", { type: "hidden", name: "free3", value: order.free3 }));
+                    //form.append($("<input>", { type: "hidden", name: "free_csv", value: order.free_csv }));
                     form.append($("<input>", { type: "hidden", name: "request_date", value: order.request_date }));
                     form.append($("<input>", { type: "hidden", name: "limit_second", value: order.limit_second }));
+                    //form.append($("<input>", { type: "hidden", name: "hashkey", value: order.hashkey }));
                     form.append($("<input>", { type: "hidden", name: "sps_hashcode", value: order.sps_hashcode }));
 
                     form.submit();
