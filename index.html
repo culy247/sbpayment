@@ -59,8 +59,8 @@
                     order.auto_charge_type      = "0";
                     order.service_type          = "0";
                     order.div_settele           = "0";
-                    //order.last_charge_month     = "";
-                    //order.camp_type             = "";
+                    order.last_charge_month     = "";
+                    order.camp_type             = "";
                     order.tracking_id           = "";
                     order.terminal_type         = "0";
                     order.success_url           = "http://stbfep.sps-system.com/MerchantPaySuccess.jsp";
@@ -102,8 +102,8 @@
                             this.auto_charge_type +
                             this.service_type +
                             this.div_settele +
-                            //this.last_charge_month +
-                            //this.camp_type +
+                            this.last_charge_month +
+                            this.camp_type +
                             this.tracking_id +
                             this.terminal_type +
                             this.success_url +
@@ -147,8 +147,8 @@
                     form.append($("<input>", { type: "hidden", name: "auto_charge_type", value: order.auto_charge_type }));
                     form.append($("<input>", { type: "hidden", name: "service_type", value: order.service_type }));
                     form.append($("<input>", { type: "hidden", name: "div_settele", value: order.div_settele }));
-                    //form.append($("<input>", { type: "hidden", name: "last_charge_month", value: order.last_charge_month }));
-                    //form.append($("<input>", { type: "hidden", name: "camp_type", value: order.camp_type }));
+                    form.append($("<input>", { type: "hidden", name: "last_charge_month", value: order.last_charge_month }));
+                    form.append($("<input>", { type: "hidden", name: "camp_type", value: order.camp_type }));
                     form.append($("<input>", { type: "hidden", name: "tracking_id", value: order.tracking_id }));
                     form.append($("<input>", { type: "hidden", name: "terminal_type", value: order.terminal_type }));
                     form.append($("<input>", { type: "hidden", name: "success_url", value: order.success_url }));
